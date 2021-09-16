@@ -7,8 +7,20 @@ html, body {
 h1 {
     font-size: 40px;
 }
+header {
+    position: fixed;
+    width: 100%;
+    background-color: #252A2E;
+    transition: .3s;
+}
+header.sticky {
+    background-color: #252A2E;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    transition: .3s;
+    z-index: 2;
+}
 nav {
-    height: 9vh;
+    height: 8vh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -20,7 +32,27 @@ nav ul, .social ul, .categories ul {
     padding: 0;
 }
 nav ul li {
-    padding: 15px;
+    padding: 15px 15px 12px 15px;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+nav ul li::after {
+    display: block;
+    content: '';
+    background-color: #3D5F7A;
+    width: 0px;
+    height: 3px;
+    transition: .3s;
+}
+nav ul li:hover::after {
+    display: block;
+    content: '';
+    background-color: #3D5F7A;
+    width: 100%;
+    height: 3px;
+    transition: .3s;
 }
 .presentation {
     height: 91vh;
@@ -35,6 +67,8 @@ nav ul li {
     border-radius: 10px;
     padding: 0 50px 10px 50px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    z-index: 0;
+    background-color: #252A2E;
 }
 .container img {
     max-width: 320px;
@@ -72,9 +106,12 @@ nav ul li {
     background-color: #3D5F7A;
     transition: .3s;
 }
-.portfolio, .contact, .about-me {
-    height: 80vh;
-    padding: 10vh 0 10vh 0;
+.presentation {
+    padding-top: 10vh;
+}
+section {
+    height: 100vh;
+    /* padding: 10vh 0 10vh 0; */
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -150,6 +187,8 @@ nav ul li {
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px 2.4px;
     padding: 10px 0px 10px 0px;
     transition: .3s;
+    background-color: #252A2E;
+    z-index: 1;
 }
 .info-interest li:hover {
     background-color: #3D5F7A;
@@ -174,7 +213,7 @@ nav ul li {
     box-shadow:  inset 0 0 0 0 transparent;
 }
 .cv:hover {
-    box-shadow: inset 194px 0 0 0 #3D5F7A;
+    box-shadow: inset 202px 0 0 0 #3D5F7A;
 }
 .categories {
     width: 100%;
@@ -197,18 +236,29 @@ nav ul li {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    transition: ease-out .5s;
+    box-shadow:  inset 0 0 0 0 transparent;
+}
+.categories button:hover {
+    border-radius: 10px;
+    box-shadow: inset 202px 0 0 0 #3D5F7A;
+}
+.categories button.marked {
+    border-radius: 10px;
+    background-color: #3D5F7A;
 }
 .projects {
     margin-top: 20px;
     width: 80%;
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
     text-align: center;
+    z-index: 1;
 }
-.project img {
-    width: 18rem;
+.thumbnail {
+    width: 60%;
     border-radius: 10px;
 }
 .content {
@@ -216,6 +266,7 @@ nav ul li {
     display: flex;
     justify-content: space-between;
     width: 80%;
+    z-index: 1;
 }
 .mail {
     display: flex;
@@ -239,7 +290,7 @@ nav ul li {
     height: 7rem;
 }
 #submit {
-    width: 50%;
+    width: 250px;
     padding: 0.7rem;
     margin: 0.8rem 0.8rem 0 0;
     font-family: 'Work Sans', sans-serif;
@@ -282,12 +333,51 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 23%;
+    width: 100%;
 }
 footer .social {
     margin-top: 20px;
-    width: 100%;
+    width: 40%;
 }
 .about-me, .contact {
     background-color: #1E2326;
+}
+.popup {
+    border-radius: 10px;
+    background-color: #252A2E;
+    position: absolute;
+    width: 50%;
+    padding: 2%;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    text-align: center;
+    animation-name: down;
+    animation-duration: 1s;
+}
+@keyframes down {
+    0% {top:0}
+    100% {top: auto;}
+}
+.disapear {
+    transform:scaleY(0) !important; 
+    transition: .5s !important;
+}
+.popup h1 {
+    margin: 10px 0 5px 0;
+}
+.popup h2 {
+    margin: 0;
+    font-weight: 500;
+}
+/* Background */
+.bg {
+    position: absolute;
+    max-width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+.star {
+    width: 1px;
+    height: 1px;
+    background-color: white;
+    position:fixed;
 }
