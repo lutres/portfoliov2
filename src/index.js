@@ -170,6 +170,8 @@ nightModeBtn.addEventListener('click', () => {
         </svg>
         `
 
+        nightModeBtn.title = "Activar animación de fondo (puede afectar el rendimiento de la página)";
+
         play = false;
 
     }
